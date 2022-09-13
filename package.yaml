@@ -1,0 +1,43 @@
+name: "semantic-verification-aw"
+
+dependencies:
+- base >= 4.7 && < 5
+- gf
+- text
+- cassava
+- vector
+- bytestring
+- filepath
+
+data-files:
+  - data/Countries.pgf
+  - data/city-list.csv
+  - data/country-list.csv
+
+library:
+  source-dirs:
+    - src
+    - src/first-order-logic
+    - src/montague-semantics
+    - src/description-logic
+    - src/backend
+
+executables:
+  main:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - semantic-verification-aw
+  test:
+    main:                Main.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - semantic-verification-aw

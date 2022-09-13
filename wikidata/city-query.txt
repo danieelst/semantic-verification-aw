@@ -1,0 +1,19 @@
+SELECT DISTINCT ?capitalLabel ?countryLabel ?population WHERE {
+  ?country wdt:P31 wd:Q3624078 .
+  ?country wdt:P36 ?capital    .
+
+  # not a former country
+  FILTER NOT EXISTS {?country wdt:P31 wd:Q3024240}
+  # and no an ancient civilisation (needed to exclude ancient Egypt)
+  FILTER NOT EXISTS {?country wdt:P31 wd:Q28171280}
+
+  ?capital p:P1082 [ ps:P1082 ?population; pq:P585 ?date1 ]
+  # remove duplicate entries for population
+  FILTER NOT EXISTS {
+    ?capital p:P1082 [ pq:P585 ?date2 ]
+    FILTER (?date2 > ?date1)
+  }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+ORDER BY ?capitalLabel

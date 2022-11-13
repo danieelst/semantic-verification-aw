@@ -1,8 +1,8 @@
 name: "semantic-verification-aw"
 
 dependencies:
-- base >= 4.7 && < 5
-- gf
+- base >= 4.9.1 && < 4.15
+- gf == 3.11
 - text
 - cassava
 - vector

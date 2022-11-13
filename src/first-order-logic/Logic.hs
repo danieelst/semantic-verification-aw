@@ -6,6 +6,7 @@ import Data.Text(replace,pack,unpack)
 
 data Comparison = Eq | Gt | Lt | GtEq | LtEq | Aprx
   deriving Eq
+
 instance Show Comparison where
   show Eq    = "="
   show Gt    = ">"
@@ -29,7 +30,6 @@ instance Show Value where
   show (Func1P n x) = n ++ pth x
 
 type Name = String
-type Pred = String
 type Ind  = String
 
 -- A predefined individual for unknown individuals.
